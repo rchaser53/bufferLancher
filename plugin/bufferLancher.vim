@@ -4,7 +4,7 @@ endif
 
 function! s:GrepMap(path)
   if !empty(glob(a:path))
-    vimgrep /\zs\w\(nore\)\?map\ze/j $HOME/.vimrc
+    exec 'vimgrep /\zs\w\(nore\)\?map\ze/j '.a:path
     return
   endif
 
