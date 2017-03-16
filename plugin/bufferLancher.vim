@@ -1,5 +1,9 @@
-if exists('g:keyMappingPaths') && len(g:keyMappingPaths) == 0
-  finish
+if !exists('g:keyMappingPaths')
+  let g:keyMappingPaths = []
+endif
+
+if len(g:keyMappingPaths) == 0
+   call add(g:keyMappingPaths, $HOME."/.vimrc")
 endif
 
 function! s:GrepMap(path)
