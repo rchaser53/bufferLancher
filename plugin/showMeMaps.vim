@@ -3,7 +3,7 @@ if !exists('g:keyMappingPaths')
 endif
 
 if len(g:keyMappingPaths) == 0
-   call add(g:keyMappingPaths, $HOME."/.vimrc")
+   call add(g:keyMappingPaths, $HOME.'/.vimrc')
 endif
 
 function! s:GrepMap(path)
@@ -16,7 +16,7 @@ function! s:GrepMap(path)
   echohl txtError | echo "set .vimrc path to .vimrc_path" | echohl None
 endfunction
 
-function! g:GetMapCommand()
+function! g:ShowMeMaps()
   for item in g:keyMappingPaths
     call s:GrepMap(item)
   endfor
