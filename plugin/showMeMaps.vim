@@ -6,18 +6,23 @@ if len(g:keyMappingPaths) == 0
    call add(g:keyMappingPaths, $HOME.'/.vimrc')
 endif
 
-function! s:GrepMap(path)
-  if !empty(glob(a:path))
-    exec 'vimgrep /\zs\w\(nore\)\?map\ze/j '.a:path
-    return
-  endif
-
-  highlight link txtError Error
-  echohl txtError | echo "set the correct file paths to g:keyMappingPaths" | echohl None
-endfunction
-
 function! g:ShowMeMaps()
+  let l:errorFlag = 'false'
+
   for item in g:keyMappingPaths
-    call s:GrepMap(item)
+    if empty(glob(item))
+      highlight link txtError Error
+      echohl txtError | echo item." is not found" | echohl None
+
+      unlet l:errorFlag
+      let l:errorFlag = 'true'
+    endif
+
+    if l:errorFlag == 'true'
+      return
+    endif
   endfor
+
+  let l:joinPaths = join(g:keyMappingPaths, ' ')
+  exec 'vimgrep /\zs\w\(nore\)\?map\ze/j '.l:joinPaths
 endfunction
