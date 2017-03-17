@@ -13,7 +13,7 @@ function! s:GrepMap(path)
   endif
 
   highlight link txtError Error
-  echohl txtError | echo "set .vimrc path to .vimrc_path" | echohl None
+  echohl txtError | echo "set the correct file paths to g:keyMappingPaths" | echohl None
 endfunction
 
 function! g:ShowMeMaps()
