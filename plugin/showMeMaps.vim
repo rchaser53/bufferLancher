@@ -6,6 +6,10 @@ if len(g:keyMappingPaths) == 0
    call add(g:keyMappingPaths, $HOME.'/.vimrc')
 endif
 
+if !exists('g:mapMark')
+  let g:mapMark = ''
+endif
+
 function! g:ShowMeMaps()
   let l:errorFlag = 'false'
 
@@ -24,5 +28,5 @@ function! g:ShowMeMaps()
   endfor
 
   let l:joinPaths = join(g:keyMappingPaths, ' ')
-  exec 'vimgrep /\zs\w\(nore\)\?map\ze/j '.l:joinPaths
+  exec 'vimgrep /\zs\w\(nore\)\?map\(.\+\)'.g:mapMark.'\ze/j '.l:joinPaths
 endfunction
